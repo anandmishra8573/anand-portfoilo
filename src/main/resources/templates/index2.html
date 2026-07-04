@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anand Mishra | Java Developer Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            scroll-behavior:smooth;
+        }
+
+        body{
+            font-family:'Poppins',sans-serif;
+            background:linear-gradient(
+                    135deg,
+                    #000000,
+                    #050816,
+                    #0a0f1f,
+                    #000000
+            );
+            color:white;
+            overflow-x:hidden;
+        }
+
+        .bg-animation{
+            position:fixed;
+            width:100%;
+            height:100%;
+            z-index:-1;
+            overflow:hidden;
+        }
+
+        .bg-animation span{
+            position:absolute;
+            display:block;
+            width:20px;
+            height:20px;
+            background:rgba(59,130,246,.15);
+            animation:animate 25s linear infinite;
+            bottom:-150px;
+            border-radius:50%;
+        }
+
+        .bg-animation span:nth-child(1){left:10%;width:80px;height:80px;}
+        .bg-animation span:nth-child(2){left:20%;width:20px;height:20px;animation-duration:12s;}
+        .bg-animation span:nth-child(3){left:70%;width:30px;height:30px;}
+        .bg-animation span:nth-child(4){left:40%;width:60px;height:60px;animation-duration:18s;}
+        .bg-animation span:nth-child(5){left:65%;width:20px;height:20px;}
+        .bg-animation span:nth-child(6){left:75%;width:100px;height:100px;}
+        .bg-animation span:nth-child(7){left:35%;width:150px;height:150px;}
+
+        @keyframes animate{
+            0%{
+                transform:translateY(0) rotate(0deg);
+                opacity:1;
+            }
+            100%{
+                transform:translateY(-1000px) rotate(720deg);
+                opacity:0;
+            }
+        }
+
+        nav{
+            position:fixed;
+            width:100%;
+            top:0;
+            z-index:999;
+            background:rgba(0,0,0,.75);
+            backdrop-filter:blur(15px);
+            border-bottom:1px solid rgba(255,255,255,.08);
+            padding:20px 0;
+        }
+
+        .container{
+            width:90%;
+            max-width:1200px;
+            margin:auto;
+        }
+
+        .nav-container{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .logo{
+            font-size:30px;
+            font-weight:700;
+            background:linear-gradient(to right,#38bdf8,#8b5cf6);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+        }
+
+        .nav-links{
+            display:flex;
+            gap:30px;
+        }
+
+        .nav-links a{
+            text-decoration:none;
+            color:#cbd5e1;
+            transition:.3s;
+        }
+
+        .nav-links a:hover{
+            color:#38bdf8;
+        }
+
+        section{
+            padding:100px 0;
+        }
+
+        .hero{
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+        }
+
+        .hero h1{
+            font-size:80px;
+            background:linear-gradient(to right,#ffffff,#38bdf8);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+        }
+
+        .hero h2{
+            color:#38bdf8;
+            margin:20px 0;
+            font-size:30px;
+        }
+
+        .hero p{
+            max-width:850px;
+            margin:auto;
+            line-height:1.8;
+            color:#cbd5e1;
+            font-size:18px;
+        }
+
+        .btn{
+            display:inline-block;
+            padding:15px 30px;
+            border-radius:10px;
+            margin:20px 10px;
+            text-decoration:none;
+            transition:.4s;
+        }
+
+        .btn-primary{
+            background:linear-gradient(to right,#2563eb,#8b5cf6);
+            color:white;
+        }
+
+        .btn-primary:hover{
+            transform:translateY(-5px);
+        }
+
+        .btn-secondary{
+            border:1px solid rgba(255,255,255,.15);
+            color:white;
+        }
+
+        .section-title{
+            text-align:center;
+            font-size:45px;
+            margin-bottom:60px;
+            background:linear-gradient(to right,#38bdf8,#8b5cf6);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+        }
+
+        .glass{
+            background:rgba(15,15,15,.65);
+            border:1px solid rgba(255,255,255,.08);
+            backdrop-filter:blur(18px);
+            border-radius:20px;
+            box-shadow:0 10px 40px rgba(0,0,0,.6);
+        }
+
+        .about-box,
+        .experience-card,
+        .contact-box{
+            padding:40px;
+            line-height:2;
+            color:#cbd5e1;
+        }
+
+        .skills-grid,
+        .projects-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:25px;
+        }
+
+        .skill-card,
+        .project-card{
+            padding:35px;
+            text-align:center;
+            transition:.4s;
+        }
+
+        .skill-card:hover,
+        .project-card:hover{
+            transform:translateY(-10px);
+            border:1px solid #38bdf8;
+        }
+
+        .skill-card i{
+            font-size:45px;
+            color:#38bdf8;
+            margin-bottom:20px;
+        }
+
+        .project-card h3{
+            color:#38bdf8;
+            margin-bottom:15px;
+        }
+
+        .contact-box{
+            text-align:center;
+        }
+
+        .contact-box p{
+            margin:15px 0;
+        }
+
+        .social-icons a{
+            color:#38bdf8;
+            font-size:25px;
+            margin:15px;
+            transition:.4s;
+        }
+
+        .social-icons a:hover{
+            color:white;
+        }
+
+        footer{
+            text-align:center;
+            padding:30px;
+            color:#64748b;
+            border-top:1px solid rgba(255,255,255,.08);
+        }
+
+        @media(max-width:768px){
+            .hero h1{
+                font-size:50px;
+            }
+
+            .hero h2{
+                font-size:22px;
+            }
+
+            .nav-links{
+                display:none;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="bg-animation">
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+</div>
+
+<nav>
+    <div class="container nav-container">
+        <div class="logo">Anand Mishra</div>
+
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="container">
+
+        <h1>Anand Mishra</h1>
+
+        <h2>Java Developer | Spring Boot Engineer | Backend Developer</h2>
+
+        <p>
+            Passionate Java Developer with 1.6+ years of experience building
+            scalable enterprise applications using Java, Spring MVC, Spring Boot,
+            Hibernate, REST APIs, Oracle and PostgreSQL.
+            I focus on clean architecture, secure backend systems,
+            and high-performance applications that solve real business problems.
+        </p>
+
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+
+    </div>
+</section>
+
+<section id="about">
+    <div class="container">
+        <h2 class="section-title">About Me</h2>
+
+        <div class="about-box glass">
+            Software Engineer with experience in backend development,
+            enterprise application design, REST API development,
+            database optimization, production support and bug fixing.
+
+            <br><br>
+
+            Experienced in Java, Spring MVC, Spring Boot, Hibernate,
+            JPA, Oracle, PostgreSQL, Git, GitHub and Microservices architecture.
+        </div>
+    </div>
+</section>
+
+<section id="skills">
+    <div class="container">
+        <h2 class="section-title">Technical Skills</h2>
+
+        <div class="skills-grid">
+
+            <div class="skill-card glass">
+                <i class="fa-brands fa-java"></i>
+                <h3>Core Java</h3>
+            </div>
+
+            <div class="skill-card glass">
+                <i class="fa-solid fa-server"></i>
+                <h3>Spring Boot</h3>
+            </div>
+
+            <div class="skill-card glass">
+                <i class="fa-solid fa-code"></i>
+                <h3>Spring MVC</h3>
+            </div>
+
+            <div class="skill-card glass">
+                <i class="fa-solid fa-database"></i>
+                <h3>Hibernate & JPA</h3>
+            </div>
+
+            <div class="skill-card glass">
+                <i class="fa-solid fa-cloud"></i>
+                <h3>REST APIs</h3>
+            </div>
+
+            <div class="skill-card glass">
+                <i class="fa-brands fa-git-alt"></i>
+                <h3>Git & GitHub</h3>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="experience">
+    <div class="container">
+        <h2 class="section-title">Experience</h2>
+
+        <div class="experience-card glass">
+            <h3>Software Developer Engineer</h3>
+
+            <p>
+                Developed enterprise applications using Spring MVC,
+                Spring Boot, Hibernate and Oracle databases.
+            </p>
+
+            <p>
+                Responsible for API development, database operations,
+                production support, debugging and deployment activities.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="projects">
+    <div class="container">
+        <h2 class="section-title">Projects</h2>
+
+        <div class="projects-grid">
+
+            <div class="project-card glass">
+                <h3>CMMS Platform</h3>
+                <p>
+                    Industrial asset and maintenance management platform
+                    developed using Spring Boot and Oracle database.
+                </p>
+            </div>
+
+            <div class="project-card glass">
+                <h3>Employee Management System</h3>
+                <p>
+                    Backend application for employee onboarding,
+                    attendance management and reporting modules.
+                </p>
+            </div>
+
+            <div class="project-card glass">
+                <h3>Portfolio Application</h3>
+                <p>
+                    Modern portfolio platform developed using
+                    Spring Boot and Thymeleaf templates.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="container">
+        <h2 class="section-title">Contact</h2>
+
+        <div class="contact-box glass">
+            <p><i class="fa-solid fa-envelope"></i> yourmail@gmail.com</p>
+            <p><i class="fa-solid fa-phone"></i> +91 XXXXX XXXXX</p>
+            <p><i class="fa-solid fa-location-dot"></i> Bangalore, India</p>
+
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © 2026 Anand Mishra | Java Developer Portfolio
+</footer>
+
+</body>
+</html>

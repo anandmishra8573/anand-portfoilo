@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Anand Mishra | Animated Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+
+  <style>
+
+    /* Entire CSS from your animated portfolio */
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- Background Animation -->
+
+  <div class="bg-animation">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Navbar -->
+
+  <nav>
+    <div class="container nav-container">
+      <div class="logo">Anand Mishra</div>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+
+  <section class="hero">
+    <div class="container">
+
+      <h1>Anand Mishra</h1>
+
+      <h2>Java Developer | Spring MVC | Spring Boot</h2>
+
+      <p>
+        Passionate Java Developer with experience in secure enterprise
+        applications and Indian Army defense projects using Java,
+        Spring MVC, Hibernate, Oracle, PostgreSQL, and REST APIs.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- Remaining sections -->
+  <!-- About -->
+  <!-- Skills -->
+  <!-- Experience -->
+  <!-- Projects -->
+  <!-- Contact -->
+
+  <script>
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach((entry)=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+        }
+      });
+    });
+
+    const hiddenElements = document.querySelectorAll('.hidden');
+    hiddenElements.forEach((el)=>observer.observe(el));
+  </script>
+
+</body>
+</html>
